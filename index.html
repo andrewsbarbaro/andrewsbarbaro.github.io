@@ -12,6 +12,13 @@
     <meta name="author" content="Andrew Fernandes Sbarbaro" />
     <meta name="robots" content="index,follow" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
     <style>
       * {
         box-sizing: border-box;
@@ -20,7 +27,7 @@
       html,
       body {
         font-family: "Courier New", "Courier", monospace;
-        font-size: 12px;
+        font-size: 15px;
         height: 100%;
         margin: 0;
         padding: 0;
@@ -37,6 +44,25 @@
         top: 50%;
         transform: translateY(-50%);
       }
+
+      .social-icons {
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        text-decoration: none;
+      }
+
+      .social-icons i {
+        margin: 0 10px;
+        font-size: 24px;
+        color: #0077b5;
+        cursor: pointer;
+      }
+
+      .social-icons i.fab.fa-twitter {
+        color: #1da1f2;
+      }
     </style>
   </head>
   <body
@@ -45,7 +71,37 @@
     onmousedown="return false;"
   >
     <div class="container">
-      <div class="content">arfs.co</div>
+      <div class="content">Andrew Fernandes Sbarbaro.</div>
+      <div class="content" id="age">21 Years Old.</div>
+      <div class="content social-icons">
+        <a href="https://www.linkedin.com/in/arfs">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/andrewsbarbaro">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
     </div>
+
+    <script>
+      function calculateAge(birthDate) {
+        const currentDate = new Date();
+        const dob = new Date(birthDate);
+        const age = currentDate.getFullYear() - dob.getFullYear();
+        if (
+          currentDate.getMonth() < dob.getMonth() ||
+          (currentDate.getMonth() === dob.getMonth() &&
+            currentDate.getDate() < dob.getDate())
+        ) {
+          return age - 1;
+        }
+        return age;
+      }
+
+      const ageElement = document.getElementById("age");
+      const dob = "2002-04-19";
+      const age = calculateAge(dob);
+      ageElement.textContent = age + " Years Old.";
+    </script>
   </body>
 </html>
